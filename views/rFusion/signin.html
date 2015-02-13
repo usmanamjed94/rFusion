@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />	
+	<title>rFusion - Log In</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- stylesheets -->
+
+
+    <link rel="stylesheet" type="text/css" href="css/compiled/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
+
+	<!-- javascript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+	<script src="js/theme.js"></script>
+
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <style>
+        .fade
+        {
+            opacity: 0;
+            -webkit-transition: opacity 0.15s linear;
+            -moz-transition: opacity 0.15s linear;
+            -o-transition: opacity 0.15s linear;
+            transition: opacity 0.20s linear;
+        }
+        .fade.in
+        {
+            opacity: 1;
+        }
+
+        #signin-button, #signup-link
+        {
+            cursor: pointer !important;
+        }
+    </style>
+</head>
+<body id="signup">
+	<div class="container">
+		<div class="row header">
+			<div class="col-md-12">
+				<h3 class="logo">
+					<img src="img/logo_r-fusion.png"/>
+				</h3>
+				<h4>Sign in to your account.</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="wrapper clearfix">
+                    <div class="alert alert-danger alert-dismissable fade hide" id="errorAlert" style="margin-top: 1em">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Oops!</strong> The username or password is incorrect. Please try again.
+                    </div>
+
+                    <div class="alert alert-success alert-dismissable fade hide" id="successAlert" style="margin-top: 1em">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Congradulations!</strong> The auenthication succeeded.
+                    </div>
+
+                    <div class="alert alert-warning alert-dismissable fade hide" id="warningAlert" style="margin-top: 1em">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Sorry!</strong> The server seems to be down right now.
+                    </div>
+
+					<div class="formy">
+						<div class="row">
+							<div class="col-md-12">
+								<form role="form" id="loginForm">
+							  		<div class="form-group">
+							    		<label for="username">Email address</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input type="email" class="form-control" name="username" id="username" placeholder="Email Address" />
+                                        </div>
+
+							  		</div>
+							  		<div class="form-group">
+							    		<label for="password">Password</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></div>
+							    		    <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+                                        </div>
+							  		</div>
+							  		<div class="checkbox">
+							    		<label>
+							      			<input type="checkbox"> Remember me
+							    		</label>
+							  		</div>
+							  		<div class="submit" >
+							  			<button type="button" id="signin-button" class="button-clear" style="margin-top: 0.5em">
+								  			<span>Sign in to my account</span>
+								  		</button>
+							  		</div>
+								</form>
+							</div>
+						</div>						
+					</div>
+				</div>
+				<div class="already-account">
+					Don't have an account?
+					<a id="signup-link">Create one here</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <script type="text/javascript">
+        $(document).ready(function()
+        {
+
+            $('#loginForm').bootstrapValidator(
+            {
+                message: 'This value is not valid',
+
+                fields:
+                {
+
+                    username: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The email is required and cannot be empty.'
+                            },
+                            emailAddress:
+                            {
+                                message: 'The input is not a valid email address.'
+                            }
+                        }
+                    },
+
+                    password:
+                    {
+                        message: 'The password is not valid',
+                        validators:
+                        {
+                            notEmpty: {
+                                message: 'The password is required and cannot be empty'
+                            },
+                            stringLength:
+                            {
+                                min: 6,
+                                max: 30,
+                                message: 'The password must be more than 6 and less than 30 characters long.'
+                            },
+                            regexp:
+                            {
+                                regexp: /^[a-zA-Z0-9_]+$/,
+                                message: 'The password can only consist of alphabetical, number and underscore'
+                            }
+                        }
+
+                    }
+                }
+            });
+
+
+
+            $('#signin-button').on('click',function()
+            {
+                $('#loginForm').bootstrapValidator('validate');
+
+
+                var data=
+
+                {
+                    username: 	$('#username').val(),
+                    password:	$('#password').val()
+                };
+
+                console.log(JSON.stringify(data));
+
+                // Ajax call to POST REST Api
+                $.ajax({
+                    url: "/login",
+                    type: "post",
+                    contentType: "application/json",
+                    data: JSON.stringify(data),
+
+                    success: function(response)
+                    {
+                        console.log(response);
+                        if (!response.success)
+                        {
+                            $('#successAlert').addClass('hide');
+                            $('#warningAlert').addClass('hide');
+
+                            window.setTimeout(function ()
+                            {
+                                $('#errorAlert').removeClass('hide').addClass('in');
+
+                            }, 1000);
+                            $('#username').closest('.form-group').addClass('has-error');
+                            $('#password').closest('.form-group').addClass('has-error');
+                        }
+
+                        else
+                        {
+                            $('#errorAlert').addClass('hide');
+                            $('#warningAlert').addClass('hide');
+
+                            window.setTimeout(function ()
+                            {
+                                $('#successAlert').removeClass('hide').addClass('in');
+
+                            }, 1000);
+
+                            $('#username').closest('.form-group').addClass('has-success');
+                            $('#password').closest('.form-group').addClass('has-success');
+
+
+                            window.setTimeout(function ()
+                            {
+                                window.location.replace(response.redirect);
+
+                            }, 2000);
+
+                        }
+
+                    },
+
+                    error:function(response)
+                    {
+                        $('#successAlert').addClass('hide');
+                        $('#errorAlert').addClass('hide');
+
+                        window.setTimeout(function ()
+                        {
+                            $('#warningAlert').removeClass('hide').addClass('in');
+
+                        }, 1000);
+                    }
+                });
+
+            });
+
+
+            // Sign Up Click respond
+            $('#signup-link').click(function()
+            {
+                window.location.replace("/signup");
+            });
+        })
+    </script>
+</body>
+</html>

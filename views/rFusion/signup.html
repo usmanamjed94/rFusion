@@ -1,0 +1,483 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />	
+	<title>rFusion - Sign Up</title>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+	<!-- stylesheets -->
+
+	<link rel="stylesheet" type="text/css" href="css/compiled/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
+
+	<!-- javascript -->
+	<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+	<script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+	<script src="js/theme.js"></script>
+
+	<!--[if lt IE 9]>
+      <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <style>
+        #signup
+        {
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body id="signup">
+	<div class="container">
+		<div class="row header">
+			<div class="col-md-12">
+				<h3 class="logo">
+                    <img src="img/logo_r-fusion.png"/>
+				</h3>
+				<h4>Set up your new account today and help the society.</h4>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-12">
+				<div class="wrapper clearfix">
+                    <div class="alert alert-danger alert-dismissable hide" id="locationAlert" style="margin-top: 1em">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Warning!</strong> Please turn on your location in the browser settings for sign up to work properly. Refresh the page and try again.
+                    </div>
+
+                    <div class="alert alert-danger alert-dismissable fade hide" id="errorAlert" style="margin-top: 1em">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Oops!</strong> The username appears to be already taken. Please try again with a different username.
+                    </div>
+
+                    <div class="alert alert-success alert-dismissable fade hide" id="successAlert" style="margin-top: 1em">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Congradulations!</strong> The signup has succeeded.
+                    </div>
+
+                    <div class="alert alert-warning alert-dismissable fade hide" id="warningAlert" style="margin-top: 1em">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Sorry!</strong> The server seems to be down right now.
+                    </div>
+
+
+					<div class="formy">
+						<div class="row">
+							<div class="col-md-12">
+								<form role="form" id="signupForm">
+									<div class="form-group">
+							    		<label for="name">Your name</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                            <input type="text" class="form-control" name="username" id="name" placeholder="Name"/>
+                                        </div>
+
+							  		</div>
+							  		<div class="form-group">
+							    		<label for="phoneNum">Phone No.</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+                                            <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="Phone No." />
+                                        </div>
+
+							  		</div>
+
+                                    <div class="form-group">
+                                        <label for="email">Email address</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon">@</div>
+                                            <input type="email" class="form-control" name="email"id="email" placeholder="Email Address" />
+                                        </div>
+
+                                    </div>
+							  		<div class="form-group">
+							    		<label for="password">Password</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></div>
+                                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+                                        </div>
+
+							  		</div>
+
+                                    <div class="form-group" style="margin-bottom: 2.0em;">
+                                        <label for="password">Confirm Password</label>
+                                        <div class="input-group">
+                                            <div class="input-group-addon"><span class="glyphicon glyphicon-retweet"></span></div>
+                                            <input type="password" class="form-control" name="confirmPassword" id="confirmpassword" placeholder="Confirm Password"/>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="BloodGroup">Blood Group</label>
+                                        <select id="BloodGroup" required/>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                    </div>
+
+                                    <div class="form-group hide">
+                                        <label for="dummy">Blood Group</label>
+                                        <select id="dummy" required/>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="willing">Willing to Donate Blood?</label>
+                                        <select id="willing" required>
+                                            <option value="Yes">Yes</option>
+                                            <option value="No">No</option>
+                                        </select>
+                                    </div>
+                                    <div class="checkbox" style="margin-top: 1.5em;">
+                                        <label>
+                                            <input type="checkbox" name="termsCheckbox" id="termsCheckbox">You have read and agree to the &nbsp; <a data-toggle="modal" data-target="#openModal"> Terms of service</a>.
+
+                                            <div id="openModal" class="modal fade">
+                                                <div class="modal-dialog">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                                            <h4 class="modal-title">Terms and Conditions</h4>
+                                                        </div>
+                                                        <div class="modal-body">
+                                                            <h4 style="margin-top: 0; margin-bottom: 1.25em">I understand that:</h4>
+
+                                                            <strong>(a)</strong> Blood donation is a totally voluntary act and no inducement or remuneration has been offered.
+                                                            <br><br><strong>(b)</strong> Donation of blood/components is a medical procedure and that by donating voluntarily, I accept the risk associated with this procedure.
+                                                            <br><br><strong>(c)</strong> My blood will be tested for Hepatitis B, Hepatitis C, Malarial parasite, HIV/AIDs and venereal diseases in addition to any other screening tests required to ensure blood safety.
+                                                            <br/><br/>
+                                                            <h4>
+                                                                I prohibit any information provided by me or about my donation to be disclosed to
+                                                                any individual or government agency without my prior permission.
+                                                            </h4>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <button type="button" id="cancelTerms" class="btn btn-default" data-dismiss="modal">Cancel</button>
+                                                            <button type="button" id="acceptTerms" class="btn btn-primary">Accept</button>
+                                                        </div>
+                                                    </div><!-- /.modal-content -->
+                                                </div><!-- /.modal-dialog -->
+                                            </div><!-- /.modal -->
+
+
+
+                                            <div  class="modalDialog hide">
+                                                <div>	<a href="#close" title="Close" class="close">X</a>
+                                                </div>
+
+                                            </div>
+                                        </label>
+                                    </div>
+
+							  		<div class="submit">
+							  			<button type="button" id="createAccount" class="btn btn-danger disabled" style="margin-top: 1.5em;">
+								  			<span>Create my account</span>
+								  		</button>
+							  		</div>
+								</form>
+							</div>
+						</div>						
+					</div>
+				</div>
+				<div class="already-account">
+					Already have an account?
+					<a id="login" data-toggle="popover" data-placement="top" data-content="Go to sign in!" data-trigger="manual">Sign in here</a>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<script type="text/javascript">
+		$(document).ready(function ()
+        {
+            var userLat = 0, userLong = 0;
+
+            function showPosition(position)
+            {
+               userLat =  position.coords.latitude;
+               userLong = position.coords.longitude;
+                console.log("long : "+userLong);
+                console.log("lat : "+userLat);
+            }
+
+
+            $(window).bind("load", function()
+            {
+
+                if (navigator.geolocation)
+                {
+                    navigator.geolocation.getCurrentPosition(showPosition);
+                }
+
+            });
+
+
+            $('#acceptTerms').on('click',function(event)
+            {
+                event.preventDefault();
+                $('#openModal').modal('hide');
+                $( "#termsCheckbox" ).prop( "checked", true );
+                $('#createAccount').removeClass('disabled');
+            });
+
+            $('#cancelTerms').on('click',function(event)
+            {
+                event.preventDefault();
+                $('#openModal').modal('hide');
+                $('#termsCheckbox').prop('checked',false);
+                $('#createAccount').addClass('disabled');
+            });
+
+            $('#termsCheckbox').on('click',function(event)
+            {
+                event.preventDefault();
+                $('#openModal').modal('show');
+
+            });
+
+            $('#signupForm').bootstrapValidator(
+            {
+                message: 'This value is not valid',
+
+                fields: {
+                    username: {
+                        message: 'The name is not valid',
+                        validators: {
+                            notEmpty: {
+                                message: 'The name is required and cannot be empty'
+                            },
+                            stringLength:
+                            {
+                                min: 6,
+                                max: 30,
+                                message: 'The name must be more than 6 and less than 30 characters long'
+                            },
+                            regexp:
+                            {
+                                regexp: /^[a-zA-Z0-9_ ]+$/,
+                                message: 'The name can only consist of alphabetical, number and underscore'
+                            }
+                        }
+                    },
+                    phoneNum:
+                    {
+                        message: 'The phone number is not valid',
+                        validators: {
+                            notEmpty: {
+                                message: 'The phone number is required and cannot be empty'
+                            },
+                            stringLength:
+                            {
+                                min: 6,
+                                max: 11,
+                                message: 'The phone number must be more than 5 and less than 11 characters long'
+                            },
+                            regexp:
+                            {
+                                regexp: /^[0-9]+$/,
+                                message: 'The name can only numbers'
+                            }
+                        }
+                    },
+                    email: {
+                        validators: {
+                            notEmpty: {
+                                message: 'The email is required and cannot be empty.'
+                            },
+                            emailAddress:
+                            {
+                                message: 'The input is not a valid email address.'
+                            }
+                        }
+                    },
+
+                    password:
+                    {
+                        message: 'The password is not valid',
+                        validators:
+                        {
+                            notEmpty: {
+                                message: 'The password is required and cannot be empty'
+                            },
+                            stringLength:
+                            {
+                                min: 6,
+                                max: 30,
+                                message: 'The password must be more than 6 and less than 30 characters long.'
+                            },
+                            regexp:
+                            {
+                                regexp: /^[a-zA-Z0-9_]+$/,
+                                message: 'The password can only consist of alphabetical, number and underscore'
+                            },
+
+                            identical:
+                            {
+                                field: "confirmPassword",
+                                message:"The password and its confirm are not the same"
+
+                            },
+
+                            different:
+                            {
+                                    field:"username",
+                                    message:"The password cannot be the same as username"
+
+                            }
+                        }
+
+                    },
+
+                    confirmPassword: {
+                        message: 'The confirmed password is not valid',
+                        validators: {
+                            notEmpty: {
+                                message: 'The confirm password is required and cannot be empty'
+                            },
+                            stringLength: {
+                                min: 6,
+                                max: 30,
+                                message: 'The confirm password must be more than 6 and less than 30 characters long.'
+                            },
+                            regexp: {
+                                regexp: /^[a-zA-Z0-9_]+$/,
+                                message: 'The confirm password can only consist of alphabetical, number and underscore'
+                            },
+
+                            identical: {
+                                field: "password",
+                                message: "The password and its confirm are not the same."
+
+                            },
+
+                            different: {
+                                field: "username",
+                                message: "The password cannot be the same as username."
+
+                            }
+                        }
+
+                    }
+
+
+                }
+            });
+
+
+            $('#createAccount').on('click',function()
+            {
+                $('#signupForm').bootstrapValidator('validate');
+
+                if($('#signupForm').data('bootstrapValidator').isValid())
+                {
+
+                    if (userLat === 0 || userLong === 0)
+                    {
+                        $('#locationAlert').removeClass('hide');
+                        $('#successAlert').addClass('hide');
+                        $('#warningAlert').addClass('hide');
+                        $('#errorAlert').addClass('hide');
+                    }
+
+                    else {
+
+
+                        var data =
+
+                        {
+                            nameUser: $('#name').val(),
+                            phone: $('#phoneNum').val(),
+                            username: $('#email').val(),
+                            passUser: $('#password').val(),
+                            bloodgroup: $('#BloodGroup').val(),
+                            longitude: userLong,
+                            lattitude: userLat,
+                            willingness: $('#willing').val()
+
+                        };
+
+
+                        // Ajax call to POST REST Api
+                        $.ajax({
+                            url: "/signup",
+                            type: "post",
+                            contentType: "application/json",
+                            data: JSON.stringify(data),
+
+                            success: function (response) {
+                                console.log(response.success);
+                                if (!response.success) {
+                                    $('#locationAlert').addClass('hide');
+                                    $('#successAlert').addClass('hide');
+                                    $('#warningAlert').addClass('hide');
+
+                                    window.setTimeout(function () {
+                                        $('#errorAlert').removeClass('hide').addClass('in');
+
+                                    }, 1000);
+
+                                    $('#email').closest('.form-group').addClass('has-error');
+                                }
+
+                                else {
+                                    $('#locationAlert').addClass('hide');
+                                    $('#errorAlert').addClass('hide');
+                                    $('#warningAlert').addClass('hide');
+
+                                    window.setTimeout(function () {
+                                        $('#successAlert').removeClass('hide').addClass('in');
+
+                                    }, 1000);
+
+
+                                    window.setTimeout(function () {
+                                        window.location.replace("/login");
+
+                                    }, 2000);
+
+                                }
+
+                            },
+
+                            error: function (response) {
+                                $('#locationAlert').addClass('hide');
+                                $('#successAlert').addClass('hide');
+                                $('#errorAlert').addClass('hide');
+
+                                window.setTimeout(function () {
+                                    $('#warningAlert').removeClass('hide').addClass('in');
+
+                                }, 1000);
+                            }
+                        });
+                    }
+                }
+
+            });
+
+            // Log In Click respond
+            $('#login').click(function()
+            {
+                window.location.replace("/login");
+            });
+
+
+		});
+	</script>
+</body>
+</html>

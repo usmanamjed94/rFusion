@@ -1,0 +1,526 @@
+<!DOCTYPE html>
+<html>
+<head>
+ 
+    <title>R-Fusion | Voluntary Blood Donor Recruitment Program | Revolution Flame</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <meta name="keywords" content=" rfusion, blood donation, volunteers, donations, pakistan,revolutionflame">
+    <meta name="description" content="R-Fusion programme by Revolution Flame is focused to connect voluntary blood donors with people in need in real time.">
+    <meta name="author" content="hasanphd">
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
+    <link href="css/custom.css" rel="stylesheet">
+    <link href="css/font-awesome.min.css" rel="stylesheet">
+
+    <link href="css/owl.carousel.css" rel="stylesheet">
+    <link href="css/owl.theme.css" rel="stylesheet">
+
+    <link rel="shortcut icon" type="image/x-icon" href="img/favicon.ico"/>
+
+    <link href='http://fonts.googleapis.com/css?family=Dosis|Fjalla+One' rel='stylesheet' type='text/css'>
+
+    <!-- javascript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+    <!--[if lt IE 9]>
+      <script type="text/javascript" src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+</head>
+<body>
+ 
+ 
+ 
+<div id="preloader">
+<span></span>
+<span></span>
+<span></span>
+</div>
+ 
+ 
+ 
+<section id="section-1" class="jumbotron bg-img-2">
+<div class="container">
+ 
+<header>
+ 
+<h1 class="brand-c">
+<a href="#">
+ 
+<img src="img/logo_r-fusion.png" alt="">
+
+
+</a>
+</h1>
+
+<nav id="nav-primary" role="navigation">
+<h3 class="text-hide nav-toggle">Navigation:</h3>
+<ul>
+<li class="nav-current"><a href="#section-1">Home</a></li>
+<li><a href="#section-2">Blood Request</a></li>
+<li><a href="#section-3">Blood Banks</a></li>
+<li><a class="signup_button">SignUp</a></li>
+<li><a class="login_button">Login</a></li>
+</ul>
+</nav>
+
+</header>
+<div class="row">
+
+<div class="col-sm-6">
+<div class="align-l">
+
+<h1 id="responsive_headline">Pyar Banto, Nafratain Mitao!</h1>
+</div>
+
+</div>
+<div class="col-sm-6">
+
+<img data-scrollReveal="enter from the bottom after 1.5s" class="img-responsive align-l" src="img/mockups/ip-trw3.png" alt="iphone">
+
+</div>
+</div>
+<div class="clearfix"></div>
+<div class="row">
+<div class="col-sm-12">
+<p class="align-c">Every 3 seconds someone needs blood. One in seven people entering the hospital needs blood. This never ending blood shortage is increasing day by day, and there aren’t any unfortunate or mysterious circumstances, just the reluctance of people. To bridge the gap, R-Fusion is project started to connect Donors with recipients using innovative ways of communication.</p>
+</div>
+</div>
+</div>
+</section>
+
+
+<section id="section-2" class="bg-yellow">
+    <div data-scrollReveal class="container">
+        <div class="row align-c">
+            <h2>In Need of Blood? Register a Request and We Shall Contact You ASAP! <a class="btn btn-warning btn-lg" data-toggle="modal" data-target="#bloodRequestModal" style="width: 20%; font-weight: bold">Register!</a></h2>
+            <!-- Modal -->
+            <div class="modal fade" id="bloodRequestModal" tabindex="-1" role="dialog" aria-labelledby="requestModalLabel" aria-hidden="true" style="color:black;">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            <h4 class="modal-title" id="requestModalLabel"><strong>Registor Your Blood Request With R-Fusion </strong></h4>
+                        </div>
+                        <div class="modal-body" style="padding-bottom: 0">
+                            <div class="alert alert-success alert-dismissable fade hide" id="successAlert" style="margin-top: 1em">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>Congradulations!</strong> The update has succeeded.
+                            </div>
+
+                            <div class="alert alert-warning alert-dismissable fade hide" id="warningAlert" style="margin-top: 1em">
+                                <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                                <strong>Sorry!</strong> The server seems to be down right now.
+                            </div>
+
+                            <form role="form" id="bloodRequestForm">
+                                <div class="form-group">
+                                    <label for="name">Your name:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                        <input type="text" class="form-control" name="username" id="name" placeholder="Name"/>
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="phoneNum">Phone No.:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+                                        <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="Phone No." />
+                                    </div>
+
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="email">Location:</label>
+                                    <div class="input-group">
+                                        <div class="input-group-addon">@</div>
+                                        <input type="text" class="form-control" name="email"id="email" placeholder="Please enter the location where blood is required" />
+                                    </div>
+
+                                </div>
+
+
+                                <div class="form-group">
+                                    <label for="BloodGroup">Blood Group Required:  </label>
+                                    <select id="BloodGroup" required>
+                                        <option value="A+">A+</option>
+                                        <option value="A-">A-</option>
+                                        <option value="B+">B+</option>
+                                        <option value="B-">B-</option>
+                                        <option value="O+">O+</option>
+                                        <option value="O-">O-</option>
+                                        <option value="AB+">AB+</option>
+                                        <option value="AB-">AB-</option>
+                                    </select>
+                                </div>
+
+                            </form>
+                        </div>
+
+                        <div class="modal-footer" style="padding: 0; margin-top: 0; margin-bottom: 1em">
+                            <button type="button" class="btn btn-danger btn-lg hide" >Close</button>
+                            <button type="button"  class="btn btn-warning" style="margin-top: 1.5em; margin-left: 2em; font-weight: bold" data-dismiss="modal">
+                                <span><strong>Cancel Request</strong></span>
+                            </button>
+                            <button type="button" id="bloodRequest" onclick='requestFunction()' class="btn btn-danger" style="margin-top: 1.5em; margin-left: 1em; font-weight: bold">
+                                <span><strong>Send Request</strong></span>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</section>
+
+
+<section class="jumbotron bg-grey-1">
+<div class="container">
+<div class="row align-c">
+
+<div class="col-sm-6">
+<img data-scrollReveal class="align-r ext-l" src="img/mockups/ip-tlw2.png" alt="iphone">
+</div>
+ 
+<div class="col-sm-6">
+<div data-scrollReveal class="align-l">
+<h2>Peace!</h2>
+<p>Imagine a newborn baby suffering from thalessemia, Imagine a women who is suffering from cancer. Imagine a person hit by a car, helpless, who has lost so much blood in an accident, dying in a hospital and he needs blood. Now imagine, if the child is mine or yours son/brother, the women is your wife/mother/sister and the person dying in the hospital is you or me! What would be our response? I am sure, we’ll do anything to get this thing right and will pray for something optimistic. It is because we know the feeling of seeing someone in danger or afraid of losing a loved one. Someone else, somewhere else, is also facing the same. Moreover, many of us probably know someone or have a loved one who has benefited from donated blood. Get Connected with us. Sign up for our volunteer blood donation program we will connect you with people in need at time they will need the most.
+</p>
+<p>
+<a href="http://bit.ly/r-fusion" class="btn btn-warning signup_button btn-lg">SignUp Now</a>
+<a href="#section-3" class="btn btn-success btn-lg">Continue</a>
+</p>
+</div>
+</div>
+</div> 
+</div>
+</section>
+ 
+ 
+ 
+<section class="jumbotron bg-blue-3">
+<div data-scrollReveal class="container">
+<div class="row align-c">
+<div class="title-c">
+<h2>Love!</h2>
+<p>R-Fusion programme is to recruit blood donors for Blood Banks, City Blood Transfusion Councils and recognised Voluntary Blood Donor Organisations, IRCS, CBOs, NGOs and will be implemented along with them.We encourage you to be part of this noble cause, and encourage other to join us and save lives with us.</p>
+</div>
+</div>  
+</div> 
+</section>
+ 
+ 
+ 
+<section class="jumbotron bg-dim-1">
+<div class="container">
+<div class="row">
+<div class="col-sm-12 align-c subscribe-form">
+<div data-scrollReveal class="cell">
+<i class="icon icon-mail-reply"></i>
+<h1>SIGNUP</h1>
+<p>A single blood donor can save three lives. How noble is feeling of saving the most precious thing in the world? Enter your email below and we will send you registration form.</p>
+<p>
+ 
+<div id="mc_embed_signup">
+<form action="http://graphitivity.us5.list-manage.com/subscribe/post-json?u=41c1986bb365285f727c75be5&amp;id=495779bff2&amp;c=?" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
+<div style="position: absolute; left: -5000px;">
+</div>
+    <a class="btn btn-success btn-lg signup_button">YES! LETS DO IT!</a>
+</form>
+<div id="notification_container"></div>
+</div> 
+</div>
+</div>
+</div>  
+</div>  
+</section>
+ 
+ 
+ <!--
+<section class="jumbotron bg-blue-1">
+<div class="container align-c">
+<div class="row">
+ 
+<div data-scrollReveal class="col-sm-12 title-c">
+<h2>SUCCESS IS NOT CHANCE BUT CHOICE</h2>
+<p>Perfectly center aligned text, images and buttons. Anything that you put in here will align center within each column. Suits best to describe special features of about team members or aything else you like to add here with 3 column style.</p>
+</div>
+ 
+<div data-scrollReveal class="col-sm-4">
+<div class="cell">
+<i class="icon icon-lab"></i>
+<h3 class="responsive_headline3">UNLIMITED </h3>
+<p>Pomp offers many variations of layouts and colors to suit multiple needs and easy to customize the Look and Feel of the site to easily make it completely yours.
+</p>
+</div>
+</div>
+ 
+<div data-scrollReveal class="col-sm-4">
+<div class="cell">
+<i class="icon icon-gift"></i>
+<h3 class="responsive_headline3">FREE GIFTS </h3>
+<p> Download Free PSD or Buy this and get 9 layout variations, Comingsoon page, Device mockups, 125 full color studio4 icons and Get FREE lifetime Updates and Support.</p>
+</div>
+</div>
+ 
+<div data-scrollReveal class="col-sm-4">
+<div class="cell">
+<i class="icon icon-heart"></i>
+<h3 class="responsive_headline3">PORTFOLIO </h3>
+<p> Featuring a sortable gallery with lightbox and hover effects. Full Featured Cloud gallery to pull images from in Flickr and Picasa is coming soon.
+</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+ 
+ -->
+
+
+<section id="section-4" class="jumbotron bg-blue-3">
+<div class="container">
+<div class="row">
+<div data-scrollReveal class="col-sm-12 title-c">
+<h1>Why R-Fusion!</h1>
+<p>Only 5% of the population donate blood. 17% of non donors say that they have never even thought of it. 15% say that they are too busy and 15% of them are afraid of needles. Our programme focuse on awaring youth and potential blood donors to connect with real people in need and donate them directly right at moment. The Following fun statistics show some of our achievements so far.</p>
+</div>
+</div>  
+<div class="row indent-l-3x">
+ 
+<div data-scrollReveal class="col-sm-4 cell">
+<i class="icon icon-crown"></i>
+<h3>200</h3>
+<p>Donors Registrations</p>
+</div>
+ 
+<div data-scrollReveal class="col-sm-4 cell">
+<i class="icon icon-diamond"></i>
+<h3>50</h3>
+<p>Active Blood Donors</p>
+</div>
+ 
+<div data-scrollReveal class="col-sm-4 cell">
+<i class="icon icon-medal"></i>
+<h3>40</h3>
+<p>Lives Saved!</p>
+</div>
+</div> 
+</div>
+</section>
+ 
+ 
+ 
+<section id="section-3" class="bg-yellow">
+<div data-scrollReveal class="container">
+<div class="row align-c">
+<h2>Want to contact a blood bank yourself? <a class="btn btn-warning btn-lg" data-toggle="modal" data-target="#viewBloodBanksModal" style="font-weight: bold">View Our Blood Banks!</a></h2>
+    <!-- Modal -->
+    <div class="modal fade" id="viewBloodBanksModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="color:black;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" id="bloodbank" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                    <h4 class="modal-title" id="myModalLabel"><strong>Blood Banks Currently Registered With R-Fusion <strong></h4>
+                </div>
+                <div class="modal-body" style="padding-bottom: 0">
+
+                    <!-- Table view for showing the blood banks! -->
+                    <table class="table">
+
+                        <thead>
+                        <tr>
+                            <th style="text-align: center;">#</th>
+                            <th style="text-align: center;">Blood Bank Name</th>
+                            <th style="text-align: center;">Location</th>
+                            <th style="text-align: center;">Contact No.</th>
+                        </tr>
+                        </thead>
+                        <tbody id="bankTable">
+                            <tr>
+                                <td>1</td>
+                                <td>PIMS</td>
+                                <td>Islamabad</td>
+                                <td>090078601</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>R Bank</td>
+                                <td>Islamabad</td>
+                                <td>090078601</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>Blood Bank</td>
+                                <td>Islamabad</td>
+                                <td>090078601</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="modal-footer" style="padding: 0; margin-top: 0">
+                    <button type="button" class="btn btn-danger btn-lg" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div> 
+</div> 
+</section>
+ 
+ 
+ 
+<section id="section-5" class="jumbotron bg-grey-1">
+<div class="container align-c">
+<div class="row align-c">
+<div data-scrollReveal class="col-sm-12">
+<ul>
+<li class="social"><a href="http://twitter.com/revolutionflame"><i class="icon icon-twitter"></i></a></li>
+<li class="social"><a href="http://facebook.com/revolutionflame"><i class="icon icon-facebook"></i></a></li>
+<li class="social"><a href="http://linkedin.com/"><i class="icon icon-linkedin"></i></a></li>
+<!--<li class="social"><a href="http://dribbble.com/graphitivity"><i class="icon icon-dribbble"></i></a></li>
+<li class="social"><a href="http://pinterest.com/graphitivity"><i class="icon icon-pinterest"></i></a></li>
+<li class="social"><a href="http://www.cloudflare.com/email-protection#096c64686065496d6664686067276a6664"><i class="icon icon-mail-reply"></i></a></li>
+-->
+</ul>
+</div>
+</div>  
+<div class="copyrights">
+<p class="align-c">Revolution Flame © 2014, All right reserved.</p>
+</div>
+</div> 
+</section>
+ 
+ 
+ 
+ 
+<script src="js/jquery-1.11.0.min.js"></script>
+ 
+<script src="js/bootstrap.min.js"></script>
+ 
+<script src="js/custom.js"></script>
+ 
+<script src="js/jquery.scrollTo.js"></script>
+<script src="js/jquery.nav.js"></script>
+ 
+<script src="js/jquery.fittext.js"></script>
+<script>
+        jQuery("#responsive_headline").fitText(.5, { minFontSize: '30px', maxFontSize: '150px' })
+        jQuery("#responsive_headline2").fitText(1.2, { minFontSize: '20px', maxFontSize: '32px' }) 
+        jQuery(".responsive_headline3").fitText(.5, { minFontSize: '30px', maxFontSize: '52px' }) 
+    </script>
+ 
+<script src="js/owl.carousel.js"></script>
+ 
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery.form/3.32/jquery.form.js"></script>
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.11.1/jquery.validate.min.js"></script>
+ 
+<script src="js/jquery.nicescroll.min.js"></script>
+ 
+<script src='js/scrollReveal.js'></script>
+<script type="text/javascript">
+/* <![CDATA[ */
+(function(){try{var s,a,i,j,r,c,l=document.getElementsByTagName("a"),t=document.createElement("textarea");for(i=0;l.length-i;i++){try{a=l[i].getAttribute("href");if(a&&"www.cloudflare.com/email-protection"==a.substr(7 ,35)){s='';j=43;r=parseInt(a.substr(j,2),16);for(j+=2;a.length-j&&a.substr(j,1)!='X';j+=2){c=parseInt(a.substr(j,2),16)^r;s+=String.fromCharCode(c);}j+=1;s+=a.substr(j,a.length-j);t.innerHTML=s.replace(/</g,"&lt;").replace(/>/g,"&gt;");l[i].setAttribute("href","mailto:"+t.value);}}catch(e){}}}catch(e){}})();
+    
+// Sign Up Click respond
+$('.signup_button').click(function()
+{
+    //window.location.replace("/signup");
+});
+
+// Log In Click respond
+$('.login_button').click(function()
+{
+    window.location.replace("/login");
+});
+// Fill blood Bank
+function getBloodBank(){
+    console.log("bloodBank");
+    $.ajax({
+        url: "/bloodBank",
+        type: "get",
+        contentType: "application/json",
+        success: function (response)
+        {
+                    data:response.data;
+            var stuff="";
+
+            $.each(data,function(index,value){
+            console.log(index);
+            stuff+=('<tr>'
+                    +'<td>'+index+'</td>'
+                    +'<td>'+value.title+'</td>'
+                    +'<td>'+value.username+'</td>'
+                    +'<td>'+value.phone+'</td>'
+                    +'</tr>');
+            });
+        }
+    });
+}
+// Request Funtion
+function requestFunction() {
+    var data =
+
+    {
+        name: $('#name').val(),
+        phone: $('#phoneNum').val(),
+        location: $('#email').val(),
+        bloodgroup: $('#BloodGroup').val()
+    };
+
+    // Ajax call to POST REST Api
+    $.ajax({
+        url: "/postRequest",
+        type: "post",
+        contentType: "application/json",
+        data: JSON.stringify(data),
+
+        success: function (response) {
+            if (!response.success) {
+                $('#successAlert').addClass('hide');
+                window.setTimeout(function () {
+                    $('#errorAlert').removeClass('hide').addClass('in');
+
+                }, 1000);
+
+                $('#email').closest('.form-group').addClass('has-error');
+            }
+
+            else {
+                $('#errorAlert').addClass('hide');
+                window.setTimeout(function () {
+                    $('#successAlert').removeClass('hide').addClass('in');
+
+                }, 1000);
+
+                window.setTimeout(function () {
+                    window.location.replace("/myFirstApp/views/rFusion/index.html");
+
+                }, 2000);
+
+            }
+
+        },
+
+        error: function (response) {
+
+            $('#successAlert').addClass('hide');
+            window.setTimeout(function () {
+                $('#errorAlert').removeClass('hide').addClass('in');
+
+            }, 1000);
+        }
+    });
+
+};
+/* ]]> */
+</script>
+</body>
+</html>

@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>rFusion - Search Logs </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="css/compiled/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
+
+    <!-- javascript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+    <script src="js/theme.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        html
+        {
+            height: 100%
+        }
+        body
+        {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #rdiaryNav, #updateNav, #searchNav, #signoutButton, #mainPage
+        {
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body id="search">
+<header class="navbar navbar-inverse normal" role="banner" style="margin-bottom: 0;">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="mainPage" class="navbar-brand">rFusion</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+
+                <li>
+                    <a id="searchNav"><span class="glyphicon glyphicon-search"></span>
+                        &nbsp; &nbsp;Search
+                    </a>
+
+                </li>
+
+                <li>
+                    <a id="requestNav"><span class="glyphicon glyphicon-inbox"></span>
+                        &nbsp; &nbsp;Requests
+                    </a>
+
+                </li>
+
+                <li class="active">
+                    <a id="logsNav"><span class="glyphicon glyphicon-th-list"></span>
+                        &nbsp; &nbsp;Logs
+                    </a>
+
+                </li>
+
+                <li>
+                    <a id="createNav"><span class="glyphicon glyphicon-user"></span>
+                        &nbsp; &nbsp;Create Account
+                    </a>
+
+                </li>
+
+                <li>
+                    <a id="updateNav"><span class="glyphicon glyphicon-cog"></span>
+                        &nbsp; &nbsp;Manage Account
+                    </a>
+
+                </li>
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right visible-md visible-lg">
+                <li>
+                    <a id="signoutButton" class="button">Sign Out</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+
+                <legend style="margin-top: 2em; margin-bottom: 1em">Logs</legend>
+
+
+
+                <div class="alert alert-danger alert-dismissable fade hide" id="erorAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Sorry!</strong> There was an error fetching data.
+                </div>
+
+
+
+                <!-- Auto generatre values and option for all possible administrator; use the format shown below -->
+
+                <form role="form" id="requestsForm">
+                    <div class="form-group">
+                        <label for="requestType">Please select the entity whose logs you want to search for: </label>
+                        <select id="requestType" required>
+                        <option value="adminA">Admin A</option>
+                        <option value="adminB">Admin B</option>
+                        <option value="adminC">Admin C</option>
+                        </select>
+                    </div>
+
+                    <div class="submit" style="margin-bottom: 1em">
+                        <button type="button" id="requestData" class="btn btn-danger">
+                            <span>Request Logs</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Show this legend and data when you succeed in getting data back from the service upon a request-->
+
+                <legend style="margin-bottom: 1em;margin-top: 2em">Availible Logs</legend>
+
+                <table class="table">
+
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Action Type</th>
+                        <th>Action Data</th>
+                        <th>Action Result</th>
+                        <th>Action Time Stamp</th>
+                        <th>Modify Log</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr>
+                        <td>1</td>
+                        <td>Search</td>
+                        <td>G-9 Markaz</td>
+                        <td>Contacted Usman Amjed</td>
+                        <td>10:30 am</td>
+                        <td>
+                            <button type="button" class="btn btn-xs btn-danger deleteLog" >
+                                <span>Delete Log</span>
+                            </button>
+                        </td>
+
+                    </tr>
+                    <tr>
+                        <td>2</td>
+                        <td>Update</td>
+                        <td>Ali Anjum</td>
+                        <td>Successful</td>
+                        <td>10:30 pm</td>
+                        <td>
+
+                            <button type="button" class="btn btn-xs btn-danger deleteLog" >
+                                <span>Delete Log</span>
+                            </button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>3</td>
+                        <td>Create Blood Bank Account</td>
+                        <td>PIMS Blood Bank</td>
+                        <td>Successful</td>
+                        <td>1:50pm</td>
+                        <td>
+
+                            <button type="button" class="btn btn-xs btn-danger deleteLog" >
+                                <span>Delete Log</span>
+                            </button>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br/>
+                <h3>Alternative View For No Logs</h3>
+
+                <legend style="margin-bottom: 1.5em;margin-top: 2em">Availible Logs</legend>
+
+
+                <table class="table">
+
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Action Type</th>
+                        <th>Action Data</th>
+                        <th>Action Result</th>
+                        <th>Action Time Stamp</th>
+                        <th>Modify Log</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="6">
+                            <h4 class="text-center" style="margin-top: 1em; margin-bottom: 1em"> No logs availible.</h4>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+$(document).ready(function ()
+{
+
+
+    $(window).bind("load", function()
+    {
+
+
+        $('#requestData').on('click',function()
+        {
+            if($('#requestsForm').data('bootstrapValidator').isValid())
+            {
+
+                    var data =
+                    {
+                        requestType: $('#requestType').val()
+                    };
+
+                    // Ajax call to POST REST Api (Change this call to post Data API)
+                    $.ajax({
+                        url: "/update",
+                        type: "put",
+                        contentType: "application/json",
+                        data: JSON.stringify(data),
+
+                        success: function (response)
+                        {
+                            if (!response.success)
+                            {
+                                $('#errorAlert').addClass('hide');
+                                window.setTimeout(function () {
+                                    $('#errorAlert').removeClass('hide').addClass('in');
+
+                                }, 1000);
+
+                            }
+
+                            else {
+
+                                $('#errorAlert').addClass('hide');
+
+                                // Code for returned table data
+
+                            }
+
+                        },
+
+                        error: function (response) {
+
+                            $('#errorAlert').addClass('hide');
+
+                            window.setTimeout(function () {
+                                $('#errorAlert').removeClass('hide').addClass('in');
+
+                            }, 1000);
+                        }
+                    });
+                }
+
+        });
+
+        // Code Corresponding to data row delete button clicked
+        $('.deleteLog').on('click', function() {
+            $(this).closest('tr').remove();
+        });
+
+
+        $('#cancelUpdate').on('click',function()
+        {
+            window.location.replace("/map");
+        });
+
+        $('#rdiaryNav').on('click',function()
+        {
+            window.location.replace("/rdiary");
+        });
+
+        $('#updateNav').on('click',function()
+        {
+            window.location.replace("/update");
+        });
+
+        $('#requestNav').on('click',function()
+        {
+            window.location.replace("/view_requests");
+        });
+
+        $('#logsNav').on('click',function()
+        {
+            window.location.replace("/view_logs");
+        });
+
+        $('#createNav').on('click',function()
+        {
+            window.location.replace("/create_account");
+        });
+
+        $('#searchNav').on('click', function()
+        {
+            window.location.replace('/map')
+        });
+
+        $('#mainPage').on('click', function()
+        {
+            window.location.replace('/')
+        });
+
+        $('#signoutButton').on('click',function()
+        {
+            window.location.replace('/logout');
+
+        })
+    });
+
+
+});
+</script>
+
+
+</body>
+</html>

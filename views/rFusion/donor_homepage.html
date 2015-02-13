@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>rFusion - Welcome Dear Life Saver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="css/compiled/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
+
+    <!-- javascript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+    <script src="js/theme.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        html
+        {
+            height: 100%
+        }
+        body
+        {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #mainPage
+        {
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body id="search">
+<header class="navbar navbar-inverse normal" role="banner" style="margin-bottom: 0;">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="mainPage" class="navbar-brand">rFusion</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+
+            <ul class="nav navbar-nav navbar-right visible-md visible-lg">
+                <li>
+                    <a id="deleteAccount" class="button" style="margin-bottom: 20px">Delete Account</a>
+                </li>
+
+                <li>
+                    <a id="signoutButton" class="button" style="margin-left:30px;margin-bottom: 20px">Sign Out</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+
+                <legend style="margin-top: 2em; margin-bottom: 2em">Account Information</legend>
+
+                <div class="alert alert-danger alert-dismissable hide" id="locationAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Warning!</strong> Please turn on your location in the browser settings for sign up to work properly. Refresh the page and try again.
+                </div>
+
+                <div class="alert alert-danger alert-dismissable fade hide" id="errorAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Oops!</strong> The username appears to be already taken. Please try again with a different username.
+                </div>
+
+                <div class="alert alert-success alert-dismissable fade hide" id="successAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Congradulations!</strong> The update has succeeded.
+                </div>
+
+                <div class="alert alert-warning alert-dismissable fade hide" id="warningAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Sorry!</strong> The server seems to be down right now.
+                </div>
+
+                <form role="form" id="updateForm">
+                    <div class="form-group">
+                        <label for="name">Your name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                            <input type="text" class="form-control" name="username" id="name" placeholder="Name"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="phoneNum">Phone No.</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+                            <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="Phone No." />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">@</div>
+                            <input type="email" class="form-control" name="email"id="email" placeholder="Email Address" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="password">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></div>
+                            <input type="password" class="form-control" name="password" id="password" placeholder="Password" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 2.0em;">
+                        <label for="password">Confirm Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-retweet"></span></div>
+                            <input type="password" class="form-control" name="confirmPassword" id="confirmPassword" placeholder="Confirm Password"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="BloodGroup">Blood Group</label>
+                        <select id="BloodGroup" required>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="willing">Willing to Donate Blood?</label>
+                        <select id="willing" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+
+                    <div class="submit" style="margin-bottom: 5em">
+
+                        <button type="button" id="cancelUpdate" class="btn btn-default" style="margin-top: 1.5em;">
+                            <span>Cancel</span>
+                        </button>
+                        <button type="button" id="updateAccount" class="btn btn-danger" style="margin-top: 1.5em; margin-left: 2em">
+                            <span>Update My Account</span>
+                        </button>
+                    </div>
+                </form>
+
+
+
+            </div>
+
+
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+
+        var userLat = 0, userLong = 0;
+
+        function showPosition(position)
+        {
+            userLat =  position.coords.latitude;
+            userLong = position.coords.longitude;
+        }
+
+        $('#updateForm').bootstrapValidator(
+        {
+            message: 'This value is not valid',
+
+            fields: {
+                username: {
+                    message: 'The name is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: 'The name is required and cannot be empty'
+                        },
+                        stringLength:
+                        {
+                            min: 6,
+                            max: 30,
+                            message: 'The name must be more than 6 and less than 30 characters long'
+                        },
+                        regexp:
+                        {
+                            regexp: /^[a-zA-Z0-9_ ]+$/,
+                            message: 'The name can only consist of alphabetical, number and underscore'
+                        }
+                    }
+                },
+                phoneNum:
+                {
+                    message: 'The phone number is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: 'The phone number is required and cannot be empty'
+                        },
+                        stringLength:
+                        {
+                            min: 6,
+                            max: 11,
+                            message: 'The phone number must be more than 5 and less than 11 characters long'
+                        },
+                        regexp:
+                        {
+                            regexp: /^[0-9]+$/,
+                            message: 'The name can only numbers'
+                        }
+                    }
+                },
+                email: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The email is required and cannot be empty.'
+                        },
+                        emailAddress:
+                        {
+                            message: 'The input is not a valid email address.'
+                        }
+                    }
+                },
+
+                password:
+                {
+                    message: 'The password is not valid',
+                    validators:
+                    {
+                        notEmpty: {
+                            message: 'The password is required and cannot be empty'
+                        },
+                        stringLength:
+                        {
+                            min: 6,
+                            max: 30,
+                            message: 'The password must be more than 6 and less than 30 characters long.'
+                        },
+                        regexp:
+                        {
+                            regexp: /^[a-zA-Z0-9_]+$/,
+                            message: 'The password can only consist of alphabetical, number and underscore'
+                        },
+
+                        identical:
+                        {
+                            field: "confirmPassword",
+                            message:"The password and its confirm are not the same"
+
+                        },
+
+                        different:
+                        {
+                            field:"username",
+                            message:"The password cannot be the same as username"
+
+                        }
+                    }
+
+                },
+
+                confirmPassword: {
+                    message: 'The confirmed password is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: 'The confirm password is required and cannot be empty'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The confirm password must be more than 6 and less than 30 characters long.'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_]+$/,
+                            message: 'The confirm password can only consist of alphabetical, number and underscore'
+                        },
+
+                        identical: {
+                            field: "password",
+                            message: "The password and its confirm are not the same."
+
+                        },
+
+                        different: {
+                            field: "username",
+                            message: "The password cannot be the same as username."
+
+                        }
+                    }
+
+                }
+
+
+            }
+        });
+
+
+        $(window).bind("load", function()
+        {
+
+            if (navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+
+
+            // Ajax call to POST REST Api
+            $.ajax({
+                url: "/data",
+                type: "get",
+                contentType: "application/json",
+
+                success: function (response)
+                {
+                    console.log(response);
+                    $('#name').val(response.name);
+                    $('#phoneNum').val(response.phone);
+                    $('#email').val(response.username);
+                    $('#password').val(response.password);
+                    $('#confirmPassword').val(response.password);
+                    $('#BloodGroup').val(response.bloodgroup);
+                    $('#willing').val(response.willingness)
+
+                },
+
+                error: function (response)
+                {
+                    //window.location.replace("/login");
+                }
+            });
+
+            $('#updateAccount').on('click',function()
+            {
+                $('#updateForm').bootstrapValidator('validate');
+
+                if($('#updateForm').data('bootstrapValidator').isValid())
+                {
+
+                    if (userLat === 0 || userLong === 0)
+                    {
+                        $('#locationAlert').removeClass('hide');
+                        $('#successAlert').addClass('hide');
+                        $('#warningAlert').addClass('hide');
+                        $('#errorAlert').addClass('hide');
+                    }
+
+                    else
+                    {
+
+
+                        var data =
+
+                        {
+                            nameUser: $('#name').val(),
+                            phone: $('#phoneNum').val(),
+                            username: $('#email').val(),
+                            passUser: $('#password').val(),
+                            longitude: userLong,
+                            lattitude: userLat,
+                            bloodgroup: $('#BloodGroup').val(),
+                            willingness: $('#willing').val()
+
+                        };
+
+                        // Ajax call to POST REST Api
+                        $.ajax({
+                            url: "/update",
+                            type: "put",
+                            contentType: "application/json",
+                            data: JSON.stringify(data),
+
+                            success: function (response)
+                            {
+                                if (!response.success)
+                                {
+                                    $('#locationAlert').addClass('hide');
+                                    $('#successAlert').addClass('hide');
+                                    $('#warningAlert').addClass('hide');
+
+                                    window.setTimeout(function () {
+                                        $('#errorAlert').removeClass('hide').addClass('in');
+
+                                    }, 1000);
+
+                                    $('#email').closest('.form-group').addClass('has-error');
+                                }
+
+                                else {
+                                    $('#locationAlert').addClass('hide');
+                                    $('#errorAlert').addClass('hide');
+                                    $('#warningAlert').addClass('hide');
+
+                                    window.setTimeout(function () {
+                                        $('#successAlert').removeClass('hide').addClass('in');
+
+                                    }, 1000);
+
+
+                                    window.setTimeout(function () {
+                                        window.location.replace("/map");
+
+                                    }, 2000);
+
+                                }
+
+                            },
+
+                            error: function (response) {
+                                $('#locationAlert').addClass('hide');
+                                $('#successAlert').addClass('hide');
+                                $('#errorAlert').addClass('hide');
+
+                                window.setTimeout(function () {
+                                    $('#warningAlert').removeClass('hide').addClass('in');
+
+                                }, 1000);
+                            }
+                        });
+                    }
+                }
+
+            });
+
+            $('#cancelUpdate').on('click',function()
+            {
+                window.location.replace("/");
+            });
+
+
+            $('#mainPage').on('click', function()
+            {
+                window.location.replace('/')
+            });
+
+            $('#signoutButton').on('click',function()
+            {
+                $.ajax({
+                    url: "/logout",
+                    type: "get"
+                });
+                window.location.replace('/');
+            })
+
+            $('#deleteAccount').on('click',function()
+            {
+                console.log("delete button");
+                // Ajax call to POST REST Api
+                $.ajax({
+                    url: "/user",
+                    type: "delete",
+                    contentType: "application/json",
+
+                    success: function (response)
+                    {
+                        if (!response.success)
+                        {
+                            
+                        }
+                        else{
+                            window.location.replace('/');
+                        }
+                    }
+                });
+//                window.location.replace('/logout');
+
+            });
+        });
+
+    });
+</script>
+
+
+</body>
+</html>

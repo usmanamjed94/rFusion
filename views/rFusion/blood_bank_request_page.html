@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>rFusion - Welcome to your blood bank account!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="css/compiled/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
+
+    <!-- javascript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+    <script src="js/theme.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        html
+        {
+            height: 100%
+        }
+        body
+        {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #signoutButton
+        {
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body id="search">
+<header class="navbar navbar-inverse normal" role="banner" style="margin-bottom: 0;">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="mainPage" class="navbar-brand">rFusion</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+
+            <ul class="nav navbar-nav">
+                <li>
+                    <a id="searchNav"><span class="glyphicon glyphicon-search"></span>
+                        &nbsp; &nbsp;Search Donors
+                    </a>
+
+                </li>
+                <li class="active">
+                    <a id="requestNav"><span class="glyphicon glyphicon-inbox"></span>
+                        &nbsp; &nbsp;Blood Requests
+                    </a>
+
+                </li>
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right visible-md visible-lg">
+
+                <li>
+                    <a id="signoutButton" class="button">Sign Out</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                    <legend style="margin-top: 2em; margin-bottom: 1em">Create a new request</legend>
+                    <form role="form" id="bloodRequestForm">
+                        <div class="form-group">
+                            <label for="name">Requestor name:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                <input type="text" class="form-control" name="username" id="name" placeholder="Name"/>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNum">Phone No.:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+                                <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="Phone No." />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Location:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></div>
+                                <input type="text" class="form-control" name="location" id="location" placeholder="Please enter the location where blood is required" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="requestBloodMetric">How much pints of blood are required:  </label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-tint"></span></div>
+                                <input type="text" class="form-control" name="requestBloodMetric" id="requestBloodMetric" placeholder="Please enter the number of pints required. (One pint = One bottle)" />
+                            </div>
+                        </div>
+
+                        <br/>
+                        <div class="form-group">
+                            <label for="BloodGroup">Blood Group Required:  </label>
+                            <select id="BloodGroup" required>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+
+                        <br/>
+                        <div class="form-group">
+                            <label for="bloodPayment">Can you pay for the blood (Yes results in better chances):  </label>
+                            <select id="bloodPayment" required>
+                                <option value="paymentNo">Yes</option>
+                                <option value="paymentYes">No</option>
+
+                            </select>
+                        </div>
+
+                        <br/>
+                        <div class="form-group">
+                            <label for="bloodRequestUrgency">How urgent is the request:  </label>
+                            <select id="bloodRequestUrgency" required>
+                                <option value="ICE">Emergency</option>
+                                <option value="halfDay">6-8 Hours</option>
+                                <option value="oneDay">Tommorow</option>
+                                <option value="moreThanOneDay">More than a day to process</option>
+                            </select>
+                        </div>
+                        <br/>
+
+                        <div class="submit" style="margin-bottom: 4em">
+                            <button type="button" id="submitRequest" class="btn btn-danger">
+                                <span>Submit Blood Request</span>
+                            </button>
+                        </div>
+                    </form>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        $('#searchNav').on('click',function()
+        {
+            // Change this and load the search for donors page
+            window.location.replace("/map");
+        });
+
+        $('#requestNav').on('click',function()
+        {
+            // Change this and load the r same page again
+            window.location.replace("/map");
+        });
+
+    });
+</script>
+
+
+</body>
+</html>

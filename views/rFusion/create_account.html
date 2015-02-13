@@ -1,0 +1,754 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>rFusion - Create Account </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="css/compiled/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
+
+    <!-- javascript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+    <script src="js/theme.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        html
+        {
+            height: 100%
+        }
+        body
+        {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+        #rdiaryNav, #updateNav, #searchNav, #signoutButton, #mainPage
+        {
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body id="search">
+<header class="navbar navbar-inverse normal" role="banner" style="margin-bottom: 0;">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="mainPage" class="navbar-brand">rFusion</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+
+
+
+                <li>
+                    <a id="searchNav"><span class="glyphicon glyphicon-search"></span>
+                        &nbsp; &nbsp;Search
+                    </a>
+
+                </li>
+
+                <li>
+                    <a id="requestNav"><span class="glyphicon glyphicon-inbox"></span>
+                        &nbsp; &nbsp;Requests
+                    </a>
+
+                </li>
+
+
+                <li >
+                    <a id="logsNav"><span class="glyphicon glyphicon-th-list"></span>
+                        &nbsp; &nbsp;Logs
+                    </a>
+
+                </li>
+
+                <li class="active">
+                    <a id="createNav"><span class="glyphicon glyphicon-user"></span>
+                        &nbsp; &nbsp;Create Account
+                    </a>
+                </li>
+
+
+
+                <li>
+                    <a id="updateNav"><span class="glyphicon glyphicon-cog"></span>
+                        &nbsp; &nbsp;Manage Account
+                    </a>
+
+                </li>
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right visible-md visible-lg">
+                <li>
+                    <a id="signoutButton" class="button">Sign Out</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+
+                <legend style="margin-top: 2em; margin-bottom: 1.5em">Account Information</legend>
+
+                <div class="alert alert-danger alert-dismissable hide" id="locationAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Warning!</strong> Please turn on your location in the browser settings for sign up to work properly. Refresh the page and try again.
+                </div>
+
+                <div class="alert alert-danger alert-dismissable fade hide" id="errorAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Oops!</strong> The donorName appears to be already taken. Please try again with a different donorName.
+                </div>
+
+                <div class="alert alert-success alert-dismissable fade hide" id="successAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Congradulations!</strong> The update has succeeded.
+                </div>
+
+                <div class="alert alert-warning alert-dismissable fade hide" id="warningAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Sorry!</strong> The server seems to be down right now.
+                </div>
+
+                <div class="form-group">
+                    <label for="accountType">Please select an account type: &emsp;</label>
+                    <select id="accountType" required>
+                        <option value="Donor">Donor</option>
+                        <option value="Bank">Blood Bank</option>
+                    </select>
+                </div>
+
+
+
+                <!-- Blood Bank Account -->
+                <form role="form" id="createBloodBankAccount" class="hide">
+                    <div class="form-group">
+                        <label for="bloodBankTitle">Blood Bank Title</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                            <input type="text" class="form-control" name="bloodBankTitle" id="bloodBankTitle" placeholder="Title of the Blood Bank"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodBankPhoneNum">Phone No.</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+                            <input type="text" class="form-control" name="bloodBankPhoneNum" id="bloodBankPhoneNum" placeholder="Phone No." />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="bloodBankEmail">Email address</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">@</div>
+                            <input type="email" class="form-control" name="bloodBankEmail" id="bloodBankEmail" placeholder="Email Address" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="bloodBankPassword">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></div>
+                            <input type="password" class="form-control" name="bloodBankPassword" id="bloodBankPassword" placeholder="Password" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 2.0em;">
+                        <label for="confirmBloodBankPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-retweet"></span></div>
+                            <input type="password" class="form-control" name="confirmBloodBankPassword" id="confirmBloodBankPassword" placeholder="Confirm Password"/>
+                        </div>
+
+                    </div>
+
+
+                    <div class="submit" style="margin-bottom: 5em">
+
+                        <button type="button"  class="btn btn-default cancelAccountCreation" style="margin-top: 1.5em;">
+                            <span>Cancel</span>
+                        </button>
+                        <button type="button"  class="btn btn-danger createAccount" style="margin-top: 1.5em; margin-left: 2em">
+                            <span>Create Blood Bank Account</span>
+                        </button>
+                    </div>
+                </form>
+
+
+                <!-- Blood Donor Account Form -->
+                <form role="form" id="createBloodDonorAccount">
+
+                    <div class="form-group">
+                        <label for="donorName">Donor name</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                            <input type="text" class="form-control" name="donorName" id="donorName" placeholder="Donor Name"/>
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="donorPhoneNum">Phone No.</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+                            <input type="text" class="form-control" name="donorPhoneNum" id="donorPhoneNum" placeholder="Donor Phone No." />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorEmail">donorEmail address</label>
+                        <div class="input-group">
+                            <div class="input-group-addon">@</div>
+                            <input type="email" class="form-control" name="donorEmail" id="donorEmail" placeholder="Donor Email Address" />
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="donorPassword">Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-log-in"></span></div>
+                            <input type="password" class="form-control" name="donorPassword" id="donorPassword" placeholder="Password" />
+                        </div>
+
+                    </div>
+
+                    <div class="form-group" style="margin-bottom: 2.0em;">
+                        <label for="confirmDonorPassword">Confirm Password</label>
+                        <div class="input-group">
+                            <div class="input-group-addon"><span class="glyphicon glyphicon-retweet"></span></div>
+                            <input type="password" class="form-control" name="confirmDonorPassword" id="confirmDonorPassword" placeholder="Confirm Password"/>
+                        </div>
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="donorBloodGroup">Blood Group</label>
+                        <select id="donorBloodGroup" required>
+                            <option value="A+">A+</option>
+                            <option value="A-">A-</option>
+                            <option value="B+">B+</option>
+                            <option value="B-">B-</option>
+                            <option value="O+">O+</option>
+                            <option value="O-">O-</option>
+                            <option value="AB+">AB+</option>
+                            <option value="AB-">AB-</option>
+                        </select>
+                    </div>
+
+
+                    <div class="form-group">
+                        <label for="donorWilling">Willing to Donate Blood?</label>
+                        <select id="donorWilling" required>
+                            <option value="Yes">Yes</option>
+                            <option value="No">No</option>
+                        </select>
+                    </div>
+
+                    <div class="submit" style="margin-bottom: 5em">
+
+                        <button type="button"  class="btn btn-default cancelAccountCreation" style="margin-top: 1.5em;">
+                            <span>Cancel</span>
+                        </button>
+                        <button type="button"  class="btn btn-danger createAccount" style="margin-top: 1.5em; margin-left: 2em">
+                            <span>Create Blood Donor Account</span>
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+    $(document).ready(function ()
+    {
+        var userLat = 0, userLong = 0;
+
+        function showPosition(position)
+        {
+            userLat =  position.coords.latitude;
+            userLong = position.coords.longitude;
+        }
+
+        // Code corresponds to changing of forms in case of select change
+        $(document).on('change','#accountType',function(){
+            if ($(this).val() === 'Bank') {
+                $('#createBloodBankAccount').removeClass('hide');
+                $('#createBloodDonorAccount').addClass('hide');
+            }
+            else {
+                $('#createBloodBankAccount').addClass('hide');
+                $('#createBloodDonorAccount').removeClass('hide');
+            }
+        });
+
+
+
+        // Blood Bank Account Validation
+        $('#createBloodBankAccount').bootstrapValidator(
+                {
+                    message: 'This value is not valid',
+
+                    fields: {
+                        bloodBankTitle: {
+                            message: 'The name is not valid',
+                            validators: {
+                                notEmpty: {
+                                    message: 'The blood bank title is required and cannot be empty'
+                                },
+                                stringLength:
+                                {
+                                    min: 6,
+                                    max: 30,
+                                    message: 'The blood bank title must be more than 6 and less than 30 characters long'
+                                },
+                                regexp:
+                                {
+                                    regexp: /^[a-zA-Z0-9_ ]+$/,
+                                    message: 'The blood bank title can only consist of alphabetical, number and underscore'
+                                }
+                            }
+                        },
+                        bloodBankPhoneNum:
+                        {
+                            message: 'The blood bank phone number is not valid',
+                            validators: {
+                                notEmpty: {
+                                    message: 'The blood bank phone number is required and cannot be empty'
+                                },
+                                stringLength:
+                                {
+                                    min: 6,
+                                    max: 9,
+                                    message: 'The phone number must be more than 5 and less than 10 characters long'
+                                },
+                                regexp:
+                                {
+                                    regexp: /^[0-9]+$/,
+                                    message: 'The blood bank phone number can only numbers'
+                                }
+                            }
+                        },
+                        bloodBankEmail: {
+                            validators: {
+                                notEmpty: {
+                                    message: 'The blood bank email is required and cannot be empty.'
+                                },
+                                donorEmailAddress:
+                                {
+                                    message: 'The input is not a valid email address.'
+                                }
+                            }
+                        },
+
+                        bloodBankPassword:
+                        {
+                            message: 'The password is not valid',
+                            validators:
+                            {
+                                notEmpty: {
+                                    message: 'The password is required and cannot be empty'
+                                },
+                                stringLength:
+                                {
+                                    min: 6,
+                                    max: 30,
+                                    message: 'The password must be more than 6 and less than 30 characters long.'
+                                },
+                                regexp:
+                                {
+                                    regexp: /^[a-zA-Z0-9_]+$/,
+                                    message: 'The password can only consist of alphabetical, number and underscore'
+                                },
+
+                                identical:
+                                {
+                                    field: "confirmBloodBankPassword",
+                                    message:"The password and its confirm are not the same"
+
+                                },
+
+                                different:
+                                {
+                                    field:"bloodBankTitle",
+                                    message:"The password cannot be the same as blood bank title"
+
+                                }
+                            }
+
+                        },
+
+                        confirmBloodBankPassword: {
+                            message: 'The confirmed password is not valid',
+                            validators: {
+                                notEmpty: {
+                                    message: 'The confirm password is required and cannot be empty'
+                                },
+                                stringLength: {
+                                    min: 6,
+                                    max: 30,
+                                    message: 'The confirm password must be more than 6 and less than 30 characters long.'
+                                },
+                                regexp: {
+                                    regexp: /^[a-zA-Z0-9_]+$/,
+                                    message: 'The confirm password can only consist of alphabetical, number and underscore'
+                                },
+
+                                identical: {
+                                    field: "bloodBankPassword",
+                                    message: "The password and its confirm are not the same."
+
+                                },
+
+                                different: {
+                                    field: "bloodBankTitle",
+                                    message: "The password cannot be the same as donorName."
+
+                                }
+                            }
+
+                        }
+
+
+                    }
+                });
+
+
+        // Blood Donor Account Validation
+        $('#createBloodDonorAccount').bootstrapValidator(
+        {
+            message: 'This value is not valid',
+
+            fields: {
+                donorName: {
+                    message: 'The name is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: 'The name is required and cannot be empty'
+                        },
+                        stringLength:
+                        {
+                            min: 6,
+                            max: 30,
+                            message: 'The name must be more than 6 and less than 30 characters long'
+                        },
+                        regexp:
+                        {
+                            regexp: /^[a-zA-Z0-9_ ]+$/,
+                            message: 'The name can only consist of alphabetical, number and underscore'
+                        }
+                    }
+                },
+                donorPhoneNum:
+                {
+                    message: 'The phone number is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: 'The phone number is required and cannot be empty'
+                        },
+                        stringLength:
+                        {
+                            min: 6,
+                            max: 11,
+                            message: 'The phone number must be more than 5 and less than 11 characters long'
+                        },
+                        regexp:
+                        {
+                            regexp: /^[0-9]+$/,
+                            message: 'The phone number can only numbers'
+                        }
+                    }
+                },
+                donorEmail: {
+                    validators: {
+                        notEmpty: {
+                            message: 'The email is required and cannot be empty.'
+                        },
+                        donorEmailAddress:
+                        {
+                            message: 'The input is not a valid email address.'
+                        }
+                    }
+                },
+
+                donorPassword:
+                {
+                    message: 'The password is not valid',
+                    validators:
+                    {
+                        notEmpty: {
+                            message: 'The password is required and cannot be empty'
+                        },
+                        stringLength:
+                        {
+                            min: 6,
+                            max: 30,
+                            message: 'The password must be more than 6 and less than 30 characters long.'
+                        },
+                        regexp:
+                        {
+                            regexp: /^[a-zA-Z0-9_]+$/,
+                            message: 'The password can only consist of alphabetical, number and underscore'
+                        },
+
+                        identical:
+                        {
+                            field: "confirmDonorPassword",
+                            message:"The password and its confirm are not the same"
+
+                        },
+
+                        different:
+                        {
+                            field:"donorName",
+                            message:"The password cannot be the same as donor name"
+
+                        }
+                    }
+
+                },
+
+                confirmDonorPassword: {
+                    message: 'The confirmed password is not valid',
+                    validators: {
+                        notEmpty: {
+                            message: 'The confirm password is required and cannot be empty'
+                        },
+                        stringLength: {
+                            min: 6,
+                            max: 30,
+                            message: 'The confirm password must be more than 6 and less than 30 characters long.'
+                        },
+                        regexp: {
+                            regexp: /^[a-zA-Z0-9_]+$/,
+                            message: 'The confirm password can only consist of alphabetical, number and underscore'
+                        },
+
+                        identical: {
+                            field: "donorPassword",
+                            message: "The password and its confirm are not the same."
+
+                        },
+
+                        different: {
+                            field: "donorName",
+                            message: "The password cannot be the same as donor name."
+
+                        }
+                    }
+
+                }
+
+
+            }
+        });
+
+
+        $(window).bind("load", function()
+        {
+
+            if (navigator.geolocation)
+            {
+                navigator.geolocation.getCurrentPosition(showPosition);
+            }
+
+
+
+            $('.createAccount').on('click',function()
+            {
+                if ($('#accountType').val() === 'Bank') {
+                    $('#createBloodBankAccount').bootstrapValidator('validate');
+                }
+                else {
+                    $('#createBloodDonorAccount').bootstrapValidator('validate');
+                }
+
+
+                if($('#createBloodDonorAccount').data('bootstrapValidator').isValid() || $('#createBloodBankAccount').data('bootstrapValidator').isValid())
+                {
+
+                    if (userLat === 0 || userLong === 0)
+                    {
+                        $('#locationAlert').removeClass('hide');
+                        $('#successAlert').addClass('hide');
+                        $('#warningAlert').addClass('hide');
+                        $('#errorAlert').addClass('hide');
+                    }
+
+                    else
+                    {
+
+                        // Checking which option is selected and then sending data of that form
+
+                        if ($('#accountType').val() === 'Bank') {
+
+                            var data =
+                            {
+                                nameBloodBank: $('#bloodBankTitle').val(),
+                                phoneBloodBank: $('#bloodBankPhoneNum').val(),
+                                bloodBankEmail: $('#bloodBankEmail').val(),
+                                passBloodBank: $('#bloodBankPassword').val(),
+                                longitude: userLong,
+                                lattitude: userLat
+
+                            };
+                            url="/bankSave";
+
+                        }
+                        else {
+
+                            var data =
+                            {
+                                nameUser: $('#donorName').val(),
+                                phone: $('#donorPhoneNum').val(),
+                                username: $('#donorEmail').val(),
+                                passUser: $('#donorPassword').val(),
+                                longitude: userLong,
+                                lattitude: userLat,
+                                bloodgroup: $('#donorBloodGroup').val(),
+                                willingness: $('#donorWilling').val()
+                            };
+                            console.log(data);
+                            url="/signup";
+                        }
+
+
+//                         Ajax call to POST REST Api
+                        $.ajax({
+                            url: url,
+                            type: "post",
+                            contentType: "application/json",
+                            data: JSON.stringify(data),
+
+                            success: function (response)
+                            {
+                                if (!response.success)
+                                {
+                                    $('#locationAlert').addClass('hide');
+                                    $('#successAlert').addClass('hide');
+                                    $('#warningAlert').addClass('hide');
+
+                                    window.setTimeout(function () {
+                                        $('#errorAlert').removeClass('hide').addClass('in');
+
+                                    }, 1000);
+
+                                    $('#donorEmail').closest('.form-group').addClass('has-error');
+                                }
+
+                                else {
+                                    $('#locationAlert').addClass('hide');
+                                    $('#errorAlert').addClass('hide');
+                                    $('#warningAlert').addClass('hide');
+
+                                    window.setTimeout(function () {
+                                        $('#successAlert').removeClass('hide').addClass('in');
+
+                                    }, 1000);
+
+
+                                    window.setTimeout(function () {
+                                        window.location.replace("/view_requests");
+
+                                    }, 2000);
+
+                                }
+
+                            },
+
+                            error: function (response) {
+                                $('#locationAlert').addClass('hide');
+                                $('#successAlert').addClass('hide');
+                                $('#errorAlert').addClass('hide');
+
+                                window.setTimeout(function () {
+                                    $('#warningAlert').removeClass('hide').addClass('in');
+
+                                }, 1000);
+                            }
+                        });
+                    }
+                }
+
+            });
+
+            $('#createCreation').on('click',function()
+            {
+                window.location.replace("/map");
+            });
+
+            $('#rdiaryNav').on('click',function()
+            {
+                window.location.replace("/rdiary");
+            });
+
+            $('#updateNav').on('click',function()
+            {
+                window.location.replace("/update");
+            });
+
+            $('#requestNav').on('click',function()
+            {
+                window.location.replace("/view_requests");
+            });
+
+            $('#logsNav').on('click',function()
+            {
+                window.location.replace("/view_logs");
+            });
+
+            $('#createNav').on('click',function()
+            {
+                window.location.replace("/create_account");
+            });
+
+            $('#searchNav').on('click', function()
+            {
+                window.location.replace('/map')
+            });
+
+            $('#mainPage').on('click', function()
+            {
+                window.location.replace('/')
+            });
+
+            $('#signoutButton').on('click',function()
+            {
+                window.location.replace('/logout');
+
+            })
+        });
+    });
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,328 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>rFusion - Welcome to your blood bank account!</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="css/compiled/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
+
+    <!-- javascript -->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+    <script src="js/theme.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        html
+        {
+            height: 100%
+        }
+        body
+        {
+            height: 100%;
+            margin: 0px;
+            padding: 0px
+        }
+
+         #signoutButton
+        {
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body id="search">
+<header class="navbar navbar-inverse normal" role="banner" style="margin-bottom: 0;">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="mainPage" class="navbar-brand">rFusion</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+
+            <ul class="nav navbar-nav">
+                <li class="active">
+                    <a id="searchNav"><span class="glyphicon glyphicon-search"></span>
+                        &nbsp; &nbsp;Search Donors
+                    </a>
+
+                </li>
+                <li>
+                    <a id="requestNav"><span class="glyphicon glyphicon-inbox"></span>
+                        &nbsp; &nbsp;Blood Requests
+                    </a>
+
+                </li>
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right visible-md visible-lg">
+
+                <li>
+                    <a id="signoutButton" class="button">Sign Out</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+
+                <legend style="margin-top: 2em; margin-bottom: 1em">Search For Donors</legend>
+
+                <div class="alert alert-danger alert-dismissable fade hide" id="erorAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Sorry!</strong> There was an error fetching data.
+                </div>
+                <div class="alert alert-success alert-dismissable fade hide" id="successAlert" style="margin-top: 1em">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                    <strong>Congradulations!</strong> The update has succeeded.
+                </div>
+
+                <form role="form" id="requestsForm">
+                    <div class="form-group">
+                        <label for="bloodDonorQuery" class="col-sm-3 control-label" style="margin-top:0.5em; padding-left: 0">Search for blood donors: </label>
+                        <div class="col-sm-6" style="padding-left: 0; margin-right: 3em">
+                            <input type="text" class="form-control" id="bloodDonorQuery" name="bloodDonorQuery" placeholder="Please enter the CNIC of the blood donor you want to search for.">
+                        </div>
+                    </div>
+
+                    <div class="submit" style="margin-bottom: 1em; margin-top: 2em">
+                        <button type="button" id="requestDonorData" class="btn btn-danger" style="margin-top: 2px">
+                            <span>Request Donor Data</span>
+                        </button>
+                    </div>
+                </form>
+
+                <!-- Show this legend and data when you succeed in getting data back from the service upon a request-->
+
+                <legend style="margin-bottom: 1em;margin-top: 3em">Availible Results</legend>
+
+                <table class="table">
+
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>Donor Name</th>
+                        <th>Donor Phone No.</th>
+                        <th>Donor Blood Group</th>
+                        <th>Donor Email</th>
+                        <th>Verification Status</th>
+                        <th>Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody id="donorTable">
+                    
+                    </tbody>
+                </table>
+                <br/>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+$(document).ready(function ()
+{
+
+    $('#searchNav').on('click',function()
+    {
+        // Change this and load the same same page which is open that is search for donors
+        window.location.replace("/map");
+    });
+
+    $('#requestNav').on('click',function()
+    {
+        // Change this and load the request page blood_bank_request_page
+        window.location.replace("/map");
+    });
+
+    $(window).bind("load", function()
+    {
+
+        $('#requestDonorData').on('click',function()
+        {
+//            if($('#requestsForm').data('bootstrapValidator').isValid())
+            {
+                    // Ajax call to POST REST Api (Change this call to post Data API)
+                    $.ajax({
+                        url: "/users",
+                        type: "get",
+                        contentType: "application/json",
+                        data: {name: $('#bloodDonorQuery').val()},
+
+                        success: function (response)
+                        {
+                            if (!response.success)
+                            {
+                                $('#errorAlert').addClass('hide');
+                                window.setTimeout(function () {
+                                    $('#errorAlert').removeClass('hide').addClass('in');
+
+                                }, 1000);
+
+                            }
+
+                            else {
+
+                                $('#errorAlert').addClass('hide');
+                                data=response.data;
+                                // Code for returned table data
+                                var stuff="";
+                                $.each(data,function(index,value){
+                                    console.log(index);
+                                    if(value.verifyStatus==0)
+                                    {
+                                        stuff+=('<tr id='+value._id+'><td>1</td>'
+                                            +'<td>'+value.name+'</td>'
+                                            +'<td>'+value.phone+'</td>'
+                                            +'<td>'+value.bloodgroup+'</td>'
+                                            +'<td>'+value.username+'</td>'
+                                            +'<td>Unverified</td><td>'
+                                            +'<button type="button" class="btn btn-xs btn-primary verifyDonor" onclick="verify(\''+value._id
+                                        +'\',this)"><span>Verify</span>'
+                                            +'</button>'
+                                            +'<button type="button" class="btn btn-xs btn-danger updateDonorInfo" style=" margin-left: 1em">'
+                                            +'<span>Update Information</span></button>'
+                                            +'</td></tr>');
+                                    }
+                                    else
+                                    {
+                                        stuff+=('<tr id='+value._id+'><td>1</td>'
+                                            +'<td>'+value.name+'</td>'
+                                            +'<td>'+value.phone+'</td>'
+                                            +'<td>'+value.bloodgroup+'</td>'
+                                            +'<td>'+value.username+'</td>'
+                                            +'<td>Verified</td><td>'
+                                            +'<button type="button" disabled="disabled" class="btn btn-xs btn-primary verifyDonor"><span>Verify</span>'
+                                            +'</button>'
+                                            +'<button type="button" class="btn btn-xs btn-danger updateDonorInfo" style=" margin-left: 1em">'
+                                            +'<span>Update Information</span></button>'
+                                            +'</td></tr>');
+                                    }
+                                });
+                                if(stuff=="")
+                                {
+                                    stuff='<tr><td colspan="7">'
+                                        +'<h4 class="text-center" style="margin-top: 1em; margin-bottom: 1em"> No data availible.</h4>'
+                                        +"</td></tr>";
+                                    $("#donorTable").html(stuff);
+                                }
+                                else{
+                                    console.log(stuff);
+                                    $("#donorTable").html(stuff);
+                                }
+                                // Code Corresponding to data row resolve button clicked
+                                $('.verifyDonor').on('click', function() {
+//                                    $(this).closest('tr').find('td:nth-child(6)').text('Verified');
+//                                    $(this).attr("disabled","disabled");
+                                });
+
+                            }
+
+                        },
+
+                        error: function (response) {
+
+                            $('#errorAlert').addClass('hide');
+
+                            window.setTimeout(function () {
+                                $('#errorAlert').removeClass('hide').addClass('in');
+
+                            }, 1000);
+                        }
+                    });
+                }
+
+        });
+
+        // Code Corresponding to data row delete button clicked
+        $('.updateDonorInfo').on('click', function() {
+            alert('Update karna hai :P');
+        });
+
+        // Code Corresponding to data row resolve button clicked
+        $('.verifyDonor').on('click', function() {
+
+            $(this).closest('tr').find('td:nth-child(6)').text('Verified');
+        });
+
+        $('#mainPage').on('click', function()
+        {
+            window.location.replace('/')
+        });
+
+        $('#signoutButton').on('click',function()
+        {
+            $.ajax({
+                    url: "/logout",
+                    type: "get"
+            });
+            window.location.replace('/');
+        })
+    });
+
+
+});
+    
+    function verify(id,ele) {
+        console.log("resolve")
+        bootbox.confirm("Are you sure?", function(result) {
+          if(result==true)
+          {
+            $.ajax({
+                "url": '/verifyUser',
+                "type": 'POST',
+                "data":{'id':id},
+                "success": function(response) {
+                    if(response.success)
+                    {
+                        $('#successAlert').addClass('hide');
+                        $(ele).closest('tr').find('td:nth-child(6)').text('Verified');
+                        $(ele).attr("disabled","disabled");
+                        window.setTimeout(function () {
+                            $('#successAlert').removeClass('hide').addClass('in');
+                        }, 1000);
+                    }
+                     else{
+                        $('#erorAlert').addClass('hide');
+
+                        window.setTimeout(function () {
+                            $('#erorAlert').removeClass('hide').addClass('in');
+                        }, 1000);
+                    }
+                }
+            });
+          }
+          else
+          {
+                console.log("cancel");
+          }
+        }); 
+    }
+</script>
+
+
+</body>
+</html>

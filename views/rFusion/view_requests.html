@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>rFusion - Profile </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- stylesheets -->
+
+    <link rel="stylesheet" type="text/css" href="css/compiled/theme.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrap/bootstrap.css">
+    <link rel="stylesheet" type="text/css" href="css/bootstrapValidator.min.css">
+
+    <!-- javascript -->
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/bootbox.min.js"></script>
+    <script src="js/bootstrap/bootstrap.min.js"></script>
+    <script src="js/bootstrapValidator.min.js"></script>
+    <script src="js/theme.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+
+    <style type="text/css">
+        html
+        {
+            height: 100%
+        }
+        body
+        {
+            height: 100%;
+            margin: 0px;
+            padding: 0px;
+            overflow: scroll;
+        }
+
+        #rdiaryNav, #updateNav, #searchNav, #signoutButton, #mainPage
+        {
+            cursor: pointer;
+        }
+
+
+    </style>
+</head>
+<body id="search">
+<header class="navbar navbar-inverse normal" role="banner" style="margin-bottom: 0;">
+    <div class="container">
+        <div class="navbar-header">
+            <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a id="mainPage" class="navbar-brand">rFusion</a>
+        </div>
+        <nav class="collapse navbar-collapse bs-navbar-collapse" role="navigation">
+            <ul class="nav navbar-nav">
+
+                <li>
+                    <a id="rdiaryNav"><span class="glyphicon glyphicon-dashboard"></span>
+                        &nbsp; &nbsp;rDiaries
+                    </a>
+
+                </li>
+
+
+                <li>
+                    <a id="searchNav"><span class="glyphicon glyphicon-search"></span>
+                        &nbsp; &nbsp;Search
+                    </a>
+
+                </li>
+
+                <li class="active">
+                    <a id="requestNav"><span class="glyphicon glyphicon-inbox"></span>
+                        &nbsp; &nbsp;Requests
+                    </a>
+
+                </li>
+
+                <li>
+                    <a id="createNav"><span class="glyphicon glyphicon-user"></span>
+                        &nbsp; &nbsp;Create Account
+                    </a>
+
+                </li>
+
+                <li>
+                    <a id="updateNav"><span class="glyphicon glyphicon-cog"></span>
+                        &nbsp; &nbsp;Manage Account
+                    </a>
+
+                </li>
+
+
+            </ul>
+            <ul class="nav navbar-nav navbar-right visible-md visible-lg">
+                <li>
+                    <a id="signoutButton" class="button">Sign Out</a>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</header>
+<div id="wrapper">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+
+                <legend style="margin-top: 2em; margin-bottom: 1.5em">Request Actions</legend>
+                <div class="form-group">
+                    <label for="requestActionType">Please select a request action type: &emsp;</label>
+                    <select id="requestActionType" required>
+                        <option value="none">None</option>
+                        <option value="existingRequests">View and Modify Existing Requests</option>
+                        <option value="newRequest">Put in a new request</option>
+                    </select>
+                </div>
+
+                <section id="view_requests_section" class="hide">
+
+                    <legend style="margin-top: 2em; margin-bottom: 1em">Requests</legend>
+
+
+
+                    <div class="alert alert-danger alert-dismissable fade hide" id="errorAlert" style="margin-top: 1em">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Sorry!</strong> We can't find any relevant requests. Seems like nothing of the category exists.
+                    </div>
+                    <div class="alert alert-danger alert-dismissable fade hide" id="errorAlertDeleted" style="margin-top: 1em">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                        <strong>Sorry!</strong> Server is down.
+                    </div>
+                    <div class="alert alert-success alert-dismissable fade hide" id="successAlert" style="margin-top: 1em">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>Success!</strong> Request is deleted.
+                    </div>
+                    <div class="alert alert-success alert-dismissable fade hide" id="successAlertResolved" style="margin-top: 1em">
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+                            <strong>Success!</strong> Request is Resolved.
+                    </div>
+
+
+                    <form role="form" id="requestsForm">
+                        <div class="form-group">
+                            <label for="requestType">Please select the request type you want to search for: </label>
+                            <select id="requestType" required/>
+                            <option value="allRequests">All Requests</option>
+                            <option value="unresolveRequests">Unresolved Requests</option>
+                            <option value="resolveRequests">Resolve Requests</option>
+                            <option value="deletedRequests">Deleted Requests</option>
+                            </select>
+                        </div>
+
+                        <div class="submit" style="margin-bottom: 1em">
+                            <button type="button" id="requestData" class="btn btn-danger">
+                                <span>Request Data</span>
+                            </button>
+                        </div>
+                    </form>
+
+                    <!-- Show this legend and data when you succeed in getting data back from the service upon a request-->
+
+                    <legend style="margin-bottom: 1em;margin-top: 2em">Availible Requests</legend>
+
+                    <table class="table">
+
+                        <thead>
+                        <tr>
+                            <th>#</th>
+                            <th>Requestor Name</th>
+                            <th>Requestor Phone</th>
+                            <th>Blood Group Requested</th>
+                            <th>Location Requested</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                        </thead>
+                        <tbody id="requestBody">
+
+                        </tbody>
+                    </table>
+                </section>
+
+                <section id="create_requests_section" class="hide">
+                    <legend style="margin-top: 2em; margin-bottom: 1em">Create a new request</legend>
+                    <form role="form" id="bloodRequestForm">
+                        <div class="form-group">
+                            <label for="name">Requestor name:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-user"></span></div>
+                                <input type="text" class="form-control" name="username" id="name" placeholder="Name"/>
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="phoneNum">Phone No.:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-phone"></span></div>
+                                <input type="text" class="form-control" name="phoneNum" id="phoneNum" placeholder="Phone No." />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="location">Location:</label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-picture"></span></div>
+                                <input type="text" class="form-control" name="location" id="location" placeholder="Please enter the location where blood is required" />
+                            </div>
+
+                        </div>
+
+                        <div class="form-group">
+                            <label for="requestBloodMetric">How much pints of blood are required:  </label>
+                            <div class="input-group">
+                                <div class="input-group-addon"><span class="glyphicon glyphicon-tint"></span></div>
+                                <input type="text" class="form-control" name="requestBloodMetric" id="requestBloodMetric" placeholder="Please enter the number of pints required. (One pint = One bottle)" />
+                            </div>
+                        </div>
+
+                        <br/>
+                        <div class="form-group">
+                            <label for="BloodGroup">Blood Group Required:  </label>
+                            <select id="BloodGroup" required>
+                                <option value="A+">A+</option>
+                                <option value="A-">A-</option>
+                                <option value="B+">B+</option>
+                                <option value="B-">B-</option>
+                                <option value="O+">O+</option>
+                                <option value="O-">O-</option>
+                                <option value="AB+">AB+</option>
+                                <option value="AB-">AB-</option>
+                            </select>
+                        </div>
+
+                        <br/>
+                        <div class="form-group">
+                            <label for="bloodPayment">Can you pay for the blood (Yes results in better chances):  </label>
+                            <select id="bloodPayment" required>
+                                <option value="paymentNo">Yes</option>
+                                <option value="paymentYes">No</option>
+
+                            </select>
+                        </div>
+
+                        <br/>
+                        <div class="form-group">
+                            <label for="bloodRequestUrgency">How urgent is the request:  </label>
+                            <select id="bloodRequestUrgency" required>
+                                <option value="ICE">Emergency</option>
+                                <option value="halfDay">6-8 Hours</option>
+                                <option value="oneDay">Tommorow</option>
+                                <option value="moreThanOneDay">More than a day to process</option>
+                            </select>
+                        </div>
+                        <br/>
+
+                        <div class="submit" style="margin-bottom: 4em">
+                            <button type="button" id="submitRequest" class="btn btn-danger">
+                                <span>Submit Blood Request</span>
+                            </button>
+                        </div>
+                    </form>
+
+                </section>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+<script type="text/javascript">
+$(document).ready(function ()
+{
+
+    // Code corresponds to changing of forms in case of select change
+    $(document).on('change','#requestActionType',function(){
+        if ($(this).val() === 'existingRequests') {
+            $('#view_requests_section').removeClass('hide');
+            $('#create_requests_section').addClass('hide');
+        }
+        else if ($(this).val() === 'newRequest') {
+            $('#view_requests_section').addClass('hide');
+            $('#create_requests_section').removeClass('hide');
+        }
+
+        else {
+            $('#view_requests_section').addClass('hide');
+            $('#create_requests_section').addClass('hide');
+        }
+    });
+
+    $(window).bind("load", function()
+    {
+
+        $('#requestData').on('click',function()
+        {
+            {
+                    // Ajax call to POST REST Api (Change this call to post Data API)
+                    $.ajax({
+                        url: "/requests",
+                        type: "get",
+                        contentType: "application/json",
+                        data: {requestType: $('#requestType').val()},
+
+                        success: function (response)
+                        {
+                            console.log(response);
+//                            if (!response.success )
+//                            {
+//                                $('#errorAlert').addClass('hide');
+//                                window.setTimeout(function () {
+//                                    $('#errorAlert').removeClass('hide').addClass('in');
+//
+//                                }, 1000);
+//
+//                            }
+
+//                            else 
+                            {
+
+                                $('#errorAlert').addClass('hide');
+                                console.log("success");
+                                reqStatus="UnResolved";
+                                data=response;
+                                var stuff="";
+                                $.each(data,function(index,value){
+                                    console.log(index);
+                                    if(value.requestStatus==1)
+                                    {
+                                        reqStatus="Resolved";
+                                        stuff+=("<tr id="+value._id+"><td>"+index+"</td>"
+                                        +"<td>"+value.requestorName+"</td>"
+                                        +"<td>"+value.requestorPhone+"</td>"
+                                        +"<td>"+value.requestorBloodGroup+"</td>"
+                                        +"<td>"+value.requestorLocation+"</td>"
+                                        +"<td>"+reqStatus+"</td><td>"
+                                        +'<button type="button" class="btn btn-xs btn-primary resolveRequest" disabled="disabled"><span>Resolve</span></button>'
+                                        +'<button type="button" onclick="removed(\''+value._id
+                                        +'\')" class="btn btn-xs btn-danger deleteRequest" style=" margin-left: 1em">'
+                                            +"<span>Delete Request</span></button>"
+                                        +"</td></tr>");
+                                    }
+                                    else if(value.deletedBy!="notDeleted")
+                                    {
+                                        stuff+=("<tr id="+value._id+"><td>"+index+"</td>"
+                                        +"<td>"+value.requestorName+"</td>"
+                                        +"<td>"+value.requestorPhone+"</td>"
+                                        +"<td>"+value.requestorBloodGroup+"</td>"
+                                        +"<td>"+value.requestorLocation+"</td>"
+                                        +"<td>"+reqStatus+"</td><td>"
+                                        +'<button type="button" class="btn btn-xs btn-primary resolveRequest" disabled="disabled"><span>Un resolved</span></button>'
+                                        +'<button type="button"  disabled="disabled" class="btn btn-xs btn-danger deleteRequest" style=" margin-left: 1em">'
+                                            +"<span>Delete Request</span></button>"
+                                        +"</td></tr>");
+                                    }
+                                    else{
+                                        stuff+=("<tr id="+value._id+"><td>"+index+"</td>"
+                                        +"<td>"+value.requestorName+"</td>"
+                                        +"<td>"+value.requestorPhone+"</td>"
+                                        +"<td>"+value.requestorBloodGroup+"</td>"
+                                        +"<td>"+value.requestorLocation+"</td>"
+                                        +"<td>"+reqStatus+"</td><td>"
+                                        +'<button type="button" onclick="resolve(\''+value._id
+                                        +'\')" class="btn btn-xs btn-primary resolveRequest"><span>Resolve</span></button>'
+                                        +'<button type="button" onclick="removed(\''+value._id
+                                        +'\')" class="btn btn-xs btn-danger deleteRequest" style=" margin-left: 1em">'
+                                            +"<span>Delete Request</span></button>"
+                                        +"</td></tr>");
+                                    }
+                                    // Code for returned table data
+
+                                });
+                                if(stuff=="")
+                                {
+                                    stuff='<tr><td colspan="7">'
+                                        +'<h4 class="text-center" style="margin-top: 1em; margin-bottom: 1em"> No requests availible.</h4>'
+                                        +"</td></tr>";
+                                    $("#requestBody").html(stuff);
+                                }
+                                else{
+                                    $("#requestBody").html(stuff);
+                                }
+                                
+                                $('.deleteRequest').on('click', function() {
+                                    
+                                });
+                                // Code Corresponding to data row resolve button clicked
+                                $('.resolveRequest').on('click', function() {
+                                    $(this).closest('tr').find('td:nth-child(6)').text('Resolved');
+                                    $(this).attr("disabled","disabled");
+                                });
+                            }
+
+                        },
+
+                        error: function (response) {
+
+                            $('#errorAlert').addClass('hide');
+
+                            window.setTimeout(function () {
+                                $('#errorAlert').removeClass('hide').addClass('in');
+
+                            }, 1000);
+                        }
+                    });
+                }
+
+        });
+
+
+        
+
+        $('#cancelUpdate').on('click',function()
+        {
+            window.location.replace("/map");
+        });
+
+        $('#rdiaryNav').on('click',function()
+        {
+            window.location.replace("/rdiary");
+        });
+
+        $('#updateNav').on('click',function()
+        {
+            window.location.replace("/update");
+        });
+
+        $('#requestNav').on('click',function()
+        {
+            window.location.replace("/view_requests");
+        });
+
+        $('#createNav').on('click',function()
+        {
+            window.location.replace("/create_account");
+        });
+
+        $('#searchNav').on('click', function()
+        {
+            window.location.replace('/map')
+        });
+
+        $('#mainPage').on('click', function()
+        {
+            window.location.replace('/')
+        });
+
+        $('#signoutButton').on('click',function()
+        {
+            $.ajax({
+                url: "/logout",
+                type: "get"
+            });
+            window.location.replace('/');
+
+        })
+    });
+
+
+});
+function removed(id) {
+        console.log("removed")
+        bootbox.confirm("Are you sure?", function(result) {
+          if(result==true)
+          {
+            $.ajax({
+                "url": '/deleteRequest',
+                "type": 'POST',
+                "data":{'id':id},
+                "success": function(response) {
+                    if(response.success)
+                    {
+                        $("#"+id).remove();
+                        $('#successAlert').addClass('hide');
+
+                        window.setTimeout(function () {
+                            $('#successAlert').removeClass('hide').addClass('in');
+                        }, 1000);
+                                if($('#requestBody').html()=="")
+                                {
+                                    stuff='<tr><td colspan="7">'
+                                        +'<h4 class="text-center" style="margin-top: 1em; margin-bottom: 1em"> No requests availible.</h4>'
+                                        +"</td></tr>";
+                                    $('#requestBody').html(stuff);
+                                }
+                    }
+                    else{
+                        $('#errorAlertDelete').addClass('hide');
+
+                        window.setTimeout(function () {
+                            $('#errorAlertDeleted').removeClass('hide').addClass('in');
+                        }, 1000);
+                    }
+                }
+            });
+          }
+          else
+          {
+                console.log("cancel");
+          }
+        }); 
+    }
+function resolve(id) {
+        console.log("resolve")
+        bootbox.confirm("Are you sure?", function(result) {
+          if(result==true)
+          {
+            $.ajax({
+                "url": '/resolveRequest',
+                "type": 'POST',
+                "data":{'id':id},
+                "success": function(response) {
+                    if(response.success)
+                    {
+                        $('#successAlertResolved').addClass('hide');
+
+                        window.setTimeout(function () {
+                            $('#successAlertResolved').removeClass('hide').addClass('in');
+                        }, 1000);
+                                if($('#requestBody').html()=="")
+                                {
+                                    stuff='<tr><td colspan="7">'
+                                        +'<h4 class="text-center" style="margin-top: 1em; margin-bottom: 1em"> No requests availible.</h4>'
+                                        +"</td></tr>";
+                                    $('#requestBody').html(stuff);
+                                }
+                    }
+                     else{
+                        $('#errorAlertDelete').addClass('hide');
+
+                        window.setTimeout(function () {
+                            $('#errorAlertDeleted').removeClass('hide').addClass('in');
+                        }, 1000);
+                    }
+                }
+            });
+          }
+          else
+          {
+                console.log("cancel");
+          }
+        }); 
+    }
+</script>
+
+
+</body>
+</html>

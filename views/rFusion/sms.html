@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>SMS</title>
+</head>
+<body>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script>
+    function sendsms()
+    {
+        var sms= $('#sms').val();
+        var number= $('#number').val();
+        console.log(number);
+        $.ajax({"url":"https://rfusion.herokuapp.com/sendsms",
+            "data": {"sms":  sms,"number": number},
+            "method":"POST",
+            "success": function(){
+                console.log("Success, Message Sent");
+            }
+        });
+    }
+</script>
+    <h1> SMS </h1>
+    <input type="text" id="sms" placeholder="Write sms"/> <br>
+    <input type="text" id="number" placeholder="Write number e.g +923331234567"/> <br>
+    <button  onclick="sendsms()"> Send</button><br>
+</body>
+</html>
